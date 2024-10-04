@@ -1,0 +1,26 @@
+main {
+     min-height:70%; 
+     display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+
+#formulario{
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    border: 5px solid rgb(120, 119, 184);
+    border-radius: 10px;  
+    
+
+}
+
+#boton-guardar{
+    background-color:rgb(120, 119, 184) ;
+    border: 1px solid rgb(120, 119, 184);
+}
+
+ .form-control{
+} 
