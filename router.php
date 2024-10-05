@@ -46,6 +46,18 @@ case "agregar":
         añadirMarcas($params[0]);
     }
 break;
+
+case "eliminar":
+    if(isset($params[1])){
+        removerMarca($params[1]);
+    }
+break;
+
+case "modificar":
+    if(isset($params[1])){
+        modificarMarca($params[1]);
+    }
+break;
 default:
 
     mostrarError();

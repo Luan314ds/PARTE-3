@@ -22,5 +22,8 @@ main {
     border: 1px solid rgb(120, 119, 184);
 }
 
- .form-control{
-} 
+.marcas{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

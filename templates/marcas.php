@@ -13,8 +13,16 @@
 
     <ul class="list-group">
        <?php foreach($marcas as $marca){ ?> 
-            <li class="list-group-item">
-            <b><?php echo $marca->id. "|".$marca->nombre_marca. "|" .$marca->importador. "|" .$marca->pais_origen ?> </li></b>;
+            <li class="list-group-item marcas">
+               <div>
+               <b><?php echo $marca->nombre_marca. "|" .$marca->importador. "|" .$marca->pais_origen ?></b>;
+            </div>
+            <div class="actions">
+            <a href="modificar/<?php echo $marca->id?>" type="button" class="btn btn-success ml-auto">Modificar</a>;
+            <a href="eliminar/<?php echo $marca->id?>" type="button" class="btn btn-danger ml-auto">Borrar</a>;
+
+            </div>
+            </li>
          <?php } ?>
     </ul>
 
@@ -23,29 +31,50 @@
 require_once "templates/footer.php";
 
      }
-    
-     function delete($idsecundaria){
-          //1-Vinculamos la conexion 
-          $db = new PDO('mysql:host=localhost;dbname=tp°1_web_2;charset=utf8','root','');
-    
-         // Paso 1: Eliminar primero los productos relacionados con la marca
-         $queryProductos = $db->prepare("DELETE FROM productos WHERE id_marca = ?");
-         $queryProductos->execute([$idsecundaria]);// evitar la inyeccion SQL
-    
-       
-         //2- Envio la consulta
-         $query= $db->prepare("DELETE FROM marca WHERE id = ?");
-         $query->execute([$idsecundaria]);
-     }
 
      function añadirMarcas(){
+      require_once "templates/header.php";
 
         // obtengo los datos del usuario
         $nombre= $_POST['nombre'];
         $importador= $_POST['importador'];
         $paisorigen= $_POST['pais_origen'];
 
-        insertoMarcas($nombre, $importador, $paisorigen);
+        $id = insertoMarcas($nombre, $importador, $paisorigen);
 
-        echo "Se inserto con exito!";
+        if($id){
+         header('Location: /TP2_WEB2/marcas');
+        }
+        else{
+         echo "No se inserto correctamente!";
+        }
+
+
+
+        require_once "templates/footer.php";
      }
+
+     function modificarMarca($nombre, $importador, $paisorigen,$id) {
+      require_once "templates/header.php";
+    
+      $nombre = $_POST['nombre-nuevo'];  
+      $importador= $_POST['importador-nuevo'];
+      $paisorigen= $_POST['pais_origen-nuevo'];
+  
+
+      actualizarMarca($nombre, $importador, $paisorigen, $id);
+  
+
+      header('Location: /TP2_WEB2/marcas'); 
+  
+      require_once "templates/footer.php";
+  }
+
+     function removerMarca($id){
+     eliminarMarca($id);
+     header('Location: /TP2_WEB2/marcas');
+
+     }
+
+
+    
