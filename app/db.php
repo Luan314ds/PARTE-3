@@ -49,15 +49,22 @@ function insertoMarcas($nombre, $importador, $paisorigen){
     return $db -> lastInsertId();
 }
 
+
+
+
+
+
 function actualizarMarca($nombre, $importador, $paisorigen, $id) {
     $db = ObtenerConexion();  
 
     
-    $query = $db->prepare('UPDATE marca SET nombre_marca = ?, importador= ?, pais_origen= ? WHERE id = ?');
+    $query = $db->prepare("UPDATE marca SET nombre_marca = ?, importador = ?, pais_origen = ? WHERE id = ?");
     $query->execute([$nombre, $importador, $paisorigen, $id]);
 
  
 }
+
+
 
 function eliminarMarca($id){
 
@@ -71,15 +78,17 @@ function eliminarMarca($id){
     $query= $db->prepare("DELETE FROM marca WHERE id = ?");
     $query->execute([$id]);
 
-    //VER SI RETORNAR ESTO
+    
 
 }
-
-
 
 // function ObtenerProductoId($id_productos){
 //     $productos = ObtenerDatos();
 //     $producto = $productos[$id_productos]
 //     return $producto;
 // }
+
+
+
 ?>
+
