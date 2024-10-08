@@ -5,6 +5,7 @@ require_once "templates/marcas.php";
 require_once "templates/inicio.php";
 
 
+
 if (!empty($_GET["action"])) {
 $action = $_GET["action"] ;
 }
@@ -52,10 +53,14 @@ case "eliminar":
         removerMarca($params[1]);
     }
 break;
-
+case "premodificar":
+    if(isset($params[1])){
+        premodificarMarca($params[1]);
+    }
+break;
 case "modificar":
     if(isset($params[1])){
-        modificarMarca($params[1]);
+        modificarmarca($params[1]);
     }
 break;
 default:

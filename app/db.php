@@ -50,7 +50,18 @@ function insertoMarcas($nombre, $importador, $paisorigen){
 }
 
 
+function pre($id){
+    $db = ObtenerConexion();
 
+
+
+    $query = $db->prepare('SELECT * FROM marca WHERE id = ?');
+    $query->execute([$id]);
+
+
+
+  
+}
 
 
 

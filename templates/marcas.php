@@ -18,36 +18,8 @@
                <b><?php echo $marca->nombre_marca. "|" .$marca->importador. "|" .$marca->pais_origen ?></b>
             </div>
             <div class="actions">
-            <form action="modificar/<?php echo $marca->id?>" method="POST" class="my-4" id="formulario" >
-    <div class="row">
-        <div class="col-9">
-            <div class="form-group">
-                <label>Nombre</label>
-                <input required name= "nombre-nuevo" type="text" class="form-control">
-            </div>
-        </div>
-        
-        <div class="col-9">
-            <div class="form-group">
-                <label>Importador</label>
-                <input required name= "importador-nuevo" type="text" class="form-control">
-            </div>
-        </div>
-        
-        <div class="col-9">
-            <div class="form-group">
-                <label>Pais de origen</label>
-                <input required name="pais_origen-nuevo" type="text" class="form-control">
-            </div>
-        </div>
-
-        
-        <button type="submit" class="btn btn-success mt-2 " >Modificar</button>
-       
-
-   </div>
-</form>
-<a href="eliminar/<?php echo $marca->id?>" type="button" class="btn btn-danger ml-auto">Borrar</a>
+            <a href="premodificar/<?php echo $marca->id?>" type="button" class="btn btn-success ml-auto">Modificar</a> 
+            <a href="eliminar/<?php echo $marca->id?>" type="button" class="btn btn-danger ml-auto">Borrar</a>
            
 
             </div>
@@ -84,8 +56,23 @@ require_once "templates/footer.php";
         require_once "templates/footer.php";
      }
 
-  function modificarMarca($id) {
-    require_once "templates/header.php";
+
+
+
+     function premodificarMarca($id) {
+      require_once "templates/header.php";
+
+      pre($id);
+
+      require_once "templates/form_modificar.php";
+  
+      require_once "templates/footer.php";
+
+  }
+  
+function modificarmarca($id){
+
+   echo "La función modificarmarca se está ejecutando.";
 
     $nombre= $_POST['nombre-nuevo'];
     $importador= $_POST['importador-nuevo'];
@@ -93,10 +80,10 @@ require_once "templates/footer.php";
 
     actualizarMarca($nombre, $importador, $paisorigen,$id);
 
-    require_once "templates/footer.php";
-    
-
+    header('Location: /TP2_WEB2/marcas');
 }
+
+
      function removerMarca($id){
      eliminarMarca($id);
      header('Location: /TP2_WEB2/marcas');
