@@ -9,9 +9,10 @@ class MarcaController{
     private $model;
     private $view;
 
-    function __construct(){
+
+       public function __construct($res){
         $this-> model = new MarcaModel;
-        $this-> view = new MarcaView;
+        $this-> view = new MarcaView($res->usuarios);
     }
 
     function mostrarMarcas() {

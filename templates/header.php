@@ -12,6 +12,12 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">TUDAI-WEB2</a>
+    <?php if ($this->usuarios): ?>
+    <span style="color: red;"><?= $this->usuarios->nombre ?></span>
+<?php else: ?>
+    <span style="color: red;">Usuario no encontrado</span>
+<?php endif; ?>
+
       <ul class="navbar-nav">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/PARTE2/inicio">Inicio</a>

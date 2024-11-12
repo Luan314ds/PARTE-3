@@ -1,7 +1,14 @@
 <?php
 class MarcaView{
+    public $usuarios = null;
+
+    public function __construct($usuarios) {
+        $this->usuarios = $usuarios;
+    }
+
 
     function vistamarcas($marcas){
+
         require_once "templates/header.php";
 ?>
         <main>

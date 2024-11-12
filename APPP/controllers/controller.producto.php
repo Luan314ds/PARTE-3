@@ -46,7 +46,7 @@ class ProductoController{
         $id = $this->model->insertoProductos($marcaproducto, $tipoproducto, $modelo, $color, $descripcion);
         if ($id) {
             $this->view->redireccionar();
-        // ¿HAY QUE PONER DIE()?
+        // ¿HAY QUE PONER DIE()? MIRARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
         } else {
             $this->view->mostrarerror();
         }
