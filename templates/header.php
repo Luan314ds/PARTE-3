@@ -14,13 +14,17 @@
     <a class="navbar-brand" href="#">TUDAI-WEB2</a>
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="inicio">Inicio</a>
+          <a class="nav-link active" aria-current="page" href="/PARTE2/inicio">Inicio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="marcas">Marcas</a>
+          <a class="nav-link active" aria-current="page" href="/PARTE2/marcas">Marcas</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="productos">Productos</a>
+          <a class="nav-link" href="/PARTE2/productos">Productos</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="/PARTE2/inicio-sesion">Iniciar Sesión</a>
+
         </li>
       </ul>
     </div>
