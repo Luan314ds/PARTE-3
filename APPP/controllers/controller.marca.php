@@ -84,6 +84,10 @@ function mostrarFormModificarMarca($id) {
 }
 
 
+function mostrarInicio(){
+    $this->view->inicio();
+}
+
   
 }
 ?>

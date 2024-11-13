@@ -15,24 +15,24 @@
     <?php if ($this->usuario): ?>
     <span style="color: red;"><?= $this->usuario->nombre ?></span>
 <?php else: ?>
-    <span style="color: red;">Usuario no encontrado</span>
+    <span style="color: red;">Anonimo</span>
 <?php endif; ?>
 
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/PARTE2/inicio">Inicio</a>
+          <a class="nav-link active" aria-current="page" href="<?= BASE_URL ?>inicio">Inicio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/PARTE2/marcas">Marcas</a>
+          <a class="nav-link active" aria-current="page" href="<?= BASE_URL ?>marcas">Marcas</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/PARTE2/productos">Productos</a>
+          <a class="nav-link" href="<?= BASE_URL ?>productos">Productos</a>
         </li>
         <li class="nav-item">
           <?php if ($this->usuario):?>
-          <a class="nav-link active" aria-current="page" href="/PARTE2/logout">Cerrar Sesion</a>
+          <a class="nav-link active" aria-current="page" href="<?= BASE_URL ?>logout">Cerrar Sesion</a>
           <?php else: ?>
-            <a class="nav-link active" aria-current="page" href="/PARTE2/mostrarlogin">Iniciar Sesion</a>
+            <a class="nav-link active" aria-current="page" href="<?= BASE_URL ?>mostrarlogin">Iniciar Sesion</a>
         <?php endif; ?>
         
 

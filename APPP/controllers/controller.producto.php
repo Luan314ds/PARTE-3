@@ -8,8 +8,8 @@ class ProductoController{
     private $modelMARCA;
     private $view;
 
-    function __construct(){
-        $this-> view = new ProductoView();
+    function __construct($res){
+        $this-> view = new ProductoView($res->usuario);
         $this-> model= new ProductoModel();
         $this-> modelMARCA= new MarcaModel();
     }

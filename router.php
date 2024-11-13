@@ -1,14 +1,20 @@
 <?php
+
+define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' .$_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
+
+
 include_once "./APPP/controllers/controller.producto.php";
 include_once "./APPP/controllers/controller.marca.php";
 include_once "./APPP/controllers/controller.auth.php";
+include_once "./APPP/controllers/controller.inicio.php";
 
 include_once "./APPP/middlewares/leerSesion.php";
-require_once "libs/response.php";
+include_once "./APPP/middlewares/mandarteLogin.php";
 
-require_once "templates/inicio.php";
+require_once "libs/response.php";
 require_once "templates/error.php";
-require_once "logueo/cerrar_sesion.php";
+
+
 
 
 $res = new Response();
@@ -25,7 +31,9 @@ switch ($params[0]) {
     // Inicio
     case "inicio":
         if (isset($params[0])) {
-            mostrarInicio($params[0]);
+            middlewaresesion($res);
+            $controller = new InicioController($res);
+            $controller-> mostrarInicio($params[0]);
         }
         break;
 
@@ -41,7 +49,8 @@ switch ($params[0]) {
     // Listado de productos
     case "productos":
         if (isset($params[0])) {
-            $controller = new ProductoController();
+            middlewaresesion($res);
+            $controller = new ProductoController($res);
             $controller->MOSTRARPRODUCTOS($params[0]);
         }
         break;
@@ -49,7 +58,8 @@ switch ($params[0]) {
     // Producto específico
     case "producto":
         if (isset($params[1])) {
-            $controller = new ProductoController();
+            middlewaresesion($res);
+            $controller = new ProductoController($res);
             $controller-> mostrarProducto($params[1]);
         }
         break;
@@ -78,7 +88,8 @@ switch ($params[0]) {
     // Agregar producto
     case "agregar-prod":
         if (isset($params[0])) {
-             $controller = new ProductoController();
+            middlewaresesion($res);
+             $controller = new ProductoController($res);
              $controller->añadirProductos();
         }
         break;
@@ -96,7 +107,8 @@ switch ($params[0]) {
     // Eliminar producto
     case "eliminar-prod":
         if (isset($params[1])) {
-            $controller = new ProductoController();
+            middlewaresesion($res);
+            $controller = new ProductoController($res);
             $controller->removerProducto($params[1]);
             
         }
@@ -106,6 +118,7 @@ switch ($params[0]) {
     case "formModificar-marca":
         if (isset($params[1])) {
             middlewaresesion($res);
+            verificar($res);
             $controller = new MarcaController($res);
             $controller->mostrarFormModificarMarca($params[1]);
             
@@ -114,11 +127,12 @@ switch ($params[0]) {
 
     // Modificar marca
     case "modificar-marca":
-        if(isset($params[1])){
+   
             middlewaresesion($res);
+            verificar($res);
             $controller = new MarcaController($res);
             $controller->  modificarMarca($params[1]);
-        }
+        
       
       
         break;
@@ -126,7 +140,9 @@ switch ($params[0]) {
     // Muestra el form-producto
     case "formModificar-producto":
         if (isset($params[1])) {
-            $controller = new ProductoController();
+            middlewaresesion($res);
+            verificar($res);
+            $controller = new ProductoController($res);
             $controller->  mostrarFormModificarProducto($params[1]);
            
         }
@@ -134,15 +150,10 @@ switch ($params[0]) {
 
     // Modificar producto
     case "modificar-producto":
-        // middlewaresesion($res);
-        $controller = new ProductoController();
+        middlewaresesion($res);
+        verificar($res);
+        $controller = new ProductoController($res);
         $controller->  modificarProducto();
-        break;
-
-    // Iniciar sesión
-    // Verificación de inicio de sesión
-    case "cerrar":
-        cerrar();
         break;
 
 

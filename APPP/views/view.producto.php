@@ -3,8 +3,14 @@ class ProductoView {
 
     public $usuario = null;
 
+    public function __construct($usuario) {
+        $this->usuario = $usuario;
+    }
+
+
     function mostrarProductos($productos, $marcas){
         require_once "templates/header.php";
+        
         //TRAER EL FORM
         ?>
         <main>
@@ -155,7 +161,7 @@ class ProductoView {
     }
 
     function redireccionar(){
-        header('Location: /PARTE2/productos');
+        header('Location:'. BASE_URL . 'productos');
     }
 
  

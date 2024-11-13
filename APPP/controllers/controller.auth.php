@@ -38,7 +38,7 @@ class AutenticacionController{
             $_SESSION['NOMBRE_USER'] = $usuarioBD->nombre;
             $_SESSION['LAST_ACTIVITY'] = time();
 
-            header('Location: /PARTE2/marcas');
+            header('Location:' . BASE_URL . 'productos');
         }
 
         //CAMBIO CHAT GPTttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
@@ -55,7 +55,7 @@ class AutenticacionController{
 
         //AL QUERER IR A MARCAS, Y NO ENCONTRAR EL USUARIO YA QUE LO DESTRUI
         //ME REDIRIJE A MOSTRARLOGIN
-        header('Location: /PARTE2/marcas');
+        header('Location:' . BASE_URL . 'marcas');
     }
 }
 
