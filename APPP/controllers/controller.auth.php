@@ -17,37 +17,46 @@ class AutenticacionController{
         $this->view->MostrarLogin();
     }
 
-    function login(){
-
-        if (!isset($_POST['usuario']) || empty($_POST['usuario'])) {
-            $this->view->mostrarerror('Falta completar el usuario');
+    public function login(){
+        if (!isset($_POST['nombre']) || empty($_POST['nombre'])) {
+            return $this->view->MostrarLogin('Falta completar el usuario');
         }
         if (!isset($_POST['contraseña']) || empty($_POST['contraseña'])) {
-            $this->view->mostrarerror('Falta completar la contraseña');
+            return $this->view->MostrarLogin('Falta completar la contraseña');
         }
 
-        $usuario =$_POST['usuario'];
+        $nombre =$_POST['nombre'];
         $contraseña= $_POST['contraseña'];
 
-        $usuarioBD =  $this->model->ObtenerUsuario($usuario);
+        $usuarioBD =  $this->model->ObtenerUsuario($nombre);
 
 
-        if (password_verify($contraseña,$usuarioBD->contraseña)) {
+        if ($usuarioBD && password_verify($contraseña,$usuarioBD->contraseña)) {
 
             session_start();
-            $_SESSION['ID_USER'] = $usuarioBD->id;
+            $_SESSION['ID_USER'] = $usuarioBD->id_login;
             $_SESSION['NOMBRE_USER'] = $usuarioBD->nombre;
             $_SESSION['LAST_ACTIVITY'] = time();
 
             header('Location: /PARTE2/marcas');
         }
 
-        else{
-            
-            $this->view->mostrarerror('Credenciales incorrectas');
+        //CAMBIO CHAT GPTttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
+        else {
+            return $this->view->MostrarLogin('Credenciales incorrectas');
+            // exit(); // Detenemos el flujo para evitar que se siga ejecutando
         }
-
         
+    }
+
+    public function desloguearse(){
+        session_start();
+        session_destroy();
+
+        //AL QUERER IR A MARCAS, Y NO ENCONTRAR EL USUARIO YA QUE LO DESTRUI
+        //ME REDIRIJE A MOSTRARLOGIN
         header('Location: /PARTE2/marcas');
     }
 }
+
+?>

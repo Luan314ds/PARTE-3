@@ -1,6 +1,4 @@
 <?php
-// require_once "app/db.php";
-
 function mostrarInicio(){
     echo password_hash('admin', PASSWORD_DEFAULT);
     require_once "templates/header.php";

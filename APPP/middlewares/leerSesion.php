@@ -2,13 +2,15 @@
 
 function middlewaresesion($res){
     session_start();
-if(isset($_SESSION['ID_USER'])){
-    $res->usuarios = new stdClass();
-    $res->usuarios->id = $_SESSION['ID_USER'];
-    $res->usuarios->nombre = $_SESSION['NOMBRE_USER'];    
-    return;
-} else{
-    header('Location: /PARTE2/mostrarlogin');
+    if (isset($_SESSION['ID_USER'])) {
+        $res->usuario = new stdClass();
+        $res->usuario->id_login = $_SESSION['ID_USER'];
+        $res->usuario->nombre = $_SESSION['NOMBRE_USER'];
+        return;
+    } else {
+        header('Location: /PARTE2/mostrarlogin');
+        die();
+    }
 }
-}
+
 ?>

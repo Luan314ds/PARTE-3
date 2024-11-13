@@ -8,8 +8,8 @@
 
 <form method="post" action="login">
     <div class="form-group">
-        <label for="usuario">Usuario</label>
-        <input type="text" class="form-control" id="usuario" name="usuario" required>
+        <label for="nombre">Usuario</label>
+        <input type="text" class="form-control" id="nombre" name="nombre" required>
     </div>
     <div class="form-group">
         <label for="contraseña">Contraseña</label>

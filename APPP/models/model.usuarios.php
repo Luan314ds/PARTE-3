@@ -14,7 +14,7 @@ class UsuariosModel{
     
 
     function ObtenerUsuario($nombre){
-        $query = $this->db->prepare("SELECT * FROM usuarios WHERE nombre = ?");
+        $query = $this->db->prepare("SELECT * FROM usuario WHERE nombre = ?");
         $query->execute([$nombre]);
     
         return $query->fetch(PDO::FETCH_OBJ); 

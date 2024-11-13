@@ -12,8 +12,8 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">TUDAI-WEB2</a>
-    <?php if ($this->usuarios): ?>
-    <span style="color: red;"><?= $this->usuarios->nombre ?></span>
+    <?php if ($this->usuario): ?>
+    <span style="color: red;"><?= $this->usuario->nombre ?></span>
 <?php else: ?>
     <span style="color: red;">Usuario no encontrado</span>
 <?php endif; ?>
@@ -29,7 +29,12 @@
           <a class="nav-link" href="/PARTE2/productos">Productos</a>
         </li>
         <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="/PARTE2/inicio-sesion">Iniciar Sesión</a>
+          <?php if ($this->usuario):?>
+          <a class="nav-link active" aria-current="page" href="/PARTE2/logout">Cerrar Sesion</a>
+          <?php else: ?>
+            <a class="nav-link active" aria-current="page" href="/PARTE2/mostrarlogin">Iniciar Sesion</a>
+        <?php endif; ?>
+        
 
         </li>
       </ul>

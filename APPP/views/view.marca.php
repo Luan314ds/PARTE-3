@@ -1,15 +1,15 @@
 <?php
 class MarcaView{
-    public $usuarios = null;
+    
+    public $usuario = null;
 
-    public function __construct($usuarios) {
-        $this->usuarios = $usuarios;
+    public function __construct($usuario) {
+        $this->usuario = $usuario;
     }
 
 
     function vistamarcas($marcas){
-
-        require_once "templates/header.php";
+require_once "templates/header.php";
 ?>
         <main>
     <form action="agregar" method="POST" class="my-4" id="formulario">

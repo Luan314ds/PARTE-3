@@ -12,7 +12,7 @@ class MarcaController{
 
        public function __construct($res){
         $this-> model = new MarcaModel;
-        $this-> view = new MarcaView($res->usuarios);
+        $this-> view = new MarcaView($res->usuario);
     }
 
     function mostrarMarcas() {

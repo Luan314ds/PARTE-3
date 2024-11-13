@@ -1,6 +1,8 @@
 <?php
 class ProductoView {
 
+    public $usuario = null;
+
     function mostrarProductos($productos, $marcas){
         require_once "templates/header.php";
         //TRAER EL FORM

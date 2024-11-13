@@ -4,7 +4,6 @@ include_once "./APPP/models/model.marca.php";
 include_once "./APPP/views/view.producto.php";
 
 class ProductoController{
-
     private $model;
     private $modelMARCA;
     private $view;
