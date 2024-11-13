@@ -11,6 +11,7 @@ include_once "./APPP/controllers/controller.inicio.php";
 include_once "./APPP/middlewares/leerSesion.php";
 include_once "./APPP/middlewares/mandarteLogin.php";
 
+require_once "libs/request.php";
 require_once "libs/response.php";
 require_once "templates/error.php";
 
@@ -169,6 +170,11 @@ switch ($params[0]) {
             $controller = new AutenticacionController();
             $controller->desloguearse ();
             break;
+
+            case "logout":
+                $controller = new AutenticacionController();
+                $controller->desloguearse ();
+                break;
         
     // Default: página de error
     default:
