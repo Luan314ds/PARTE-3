@@ -23,9 +23,9 @@ $router = new Router();
 // VER ID
  //                 endpoint   verbo    controller           metodo
 $router->addRoute('marcas', 'GET', 'MarcaApiController', 'mostrarTodo');
-$router->addRoute('productos-marca/:marca_producto', 'GET', 'MarcaApiController', 'mostrar');
-$router->addRoute('productos', 'GET', 'MarcaApiController', 'MOSTRARPRODUCTOS');
-$router->addRoute('producto/:id', 'GET', 'MarcaApiController', 'mostrarProducto');
+$router->addRoute('marca/:marca_producto', 'GET', 'MarcaApiController', 'mostrar');
+$router->addRoute('productos', 'GET', 'MarcaApiController', 'mostrarTodo');
+$router->addRoute('producto/:id_productos', 'GET', 'MarcaApiController', 'mostrar');
 
 $router->route($_GET["resource"], $_SERVER['REQUEST_METHOD']);
 ?>
