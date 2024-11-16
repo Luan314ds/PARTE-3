@@ -31,7 +31,7 @@ class ProductoController{
 
 
     }
-    
+
 
   
     function añadirProductos() {
@@ -41,8 +41,9 @@ class ProductoController{
         $modelo = $_POST['modelo'];
         $color = $_POST['color'];
         $descripcion = $_POST['descripcion'];
+        $precio = $_POST['precio'];
     
-        $id = $this->model->insertoProductos($marcaproducto, $tipoproducto, $modelo, $color, $descripcion);
+        $id = $this->model->insertoProductos($marcaproducto, $tipoproducto, $modelo, $color, $descripcion, $precio);
         if ($id) {
             $this->view->redireccionar();
         // ¿HAY QUE PONER DIE()? MIRARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
@@ -72,8 +73,9 @@ class ProductoController{
         $modelo = $_POST['modeloNuevo'];
         $color = $_POST['colorNuevo'];
         $descripcion = $_POST['descripcionNueva'];
+        $precio = $_POST['precioNuevo'];
     
-        $this->model->cambioValoresProducto($id, $tipoproducto, $modelo, $color, $descripcion);
+        $this->model->cambioValoresProducto($id, $tipoproducto, $modelo, $color, $descripcion, $precio);
         $this->view->redireccionar();
     }
 

@@ -1,5 +1,6 @@
 <?php
 require_once "./APPP/models/model.marca.php";
+require_once "./APPP/models/model.producto.php";
 require_once "./APPP/views/view.json.php";
 
 
@@ -11,7 +12,7 @@ class MarcaApiController{
 
 
        public function __construct(){
-        $this-> model = new MarcaModel;
+        $this-> model = new MarcaModel();
         $this-> view = new JSONView();
     }
 
@@ -26,16 +27,23 @@ class MarcaApiController{
     public function mostrar($req, $res) {
 
 
-        //VER ID
-        $id = $req->params->marca_producto;
+        //VER ID(EN ESTE CASO ES LA MARCA DEL PRODUCTO)
+        $marca = $req->params->marca_producto;
 
     
-        $productos = $this->model->obtenerProductosPorMarca($id);
+        $productos = $this->model->obtenerProductosPorMarca($marca);
+
+
+        if(!$productos){
+            return $this->view->response("La marca $marca no existe", 404);
+        }
 
         
-        return $this->view->response($productos);
+        $this->view->response($productos);
     
     }
+
+  
   
 }
 ?>

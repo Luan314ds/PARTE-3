@@ -1,18 +1,21 @@
 <?php
-class ProductoView {
+class ProductoView
+{
 
     public $usuario = null;
 
-    public function __construct($usuario) {
+    public function __construct($usuario)
+    {
         $this->usuario = $usuario;
     }
 
 
-    function mostrarProductos($productos, $marcas){
+    function mostrarProductos($productos, $marcas)
+    {
         require_once "templates/header.php";
-        
+
         //TRAER EL FORM
-        ?>
+?>
         <main>
             <form action="agregar-prod" method="POST" class="my-4" id="formulario">
                 <div class="row">
@@ -23,10 +26,10 @@ class ProductoView {
                             <select required name="marca_producto" class="form-control" id="marca_producto">
                                 <option value="">Seleccione una marca</option>
                                 <?php
-                                    // Aquí generamos las opciones con las marcas pasadas como argumento
-                                    foreach ($marcas as $marca) {
-                                        echo "<option value='{$marca->nombre_marca}'>{$marca->nombre_marca}</option>";
-                                    }
+                                // Aquí generamos las opciones con las marcas pasadas como argumento
+                                foreach ($marcas as $marca) {
+                                    echo "<option value='{$marca->nombre_marca}'>{$marca->nombre_marca}</option>";
+                                }
                                 ?>
                             </select>
                         </div>
@@ -56,6 +59,13 @@ class ProductoView {
                         </div>
                     </div>
 
+                    <div class="col-9">
+                        <div class="form-group">
+                            <label>Precio</label>
+                            <input required name="precio" type="number" class="form-control" id="precio">
+                        </div>
+                    </div>
+
                     <!-- Descripción del Producto -->
                     <div class="col-9">
                         <div class="form-group">
@@ -70,100 +80,112 @@ class ProductoView {
             </form>
         </main>
         <?php
-        
+
         ?>
         <ul class="list-group">
-            <?php foreach ($productos as $producto) { ?> 
+            <?php foreach ($productos as $producto) { ?>
                 <li class="list-group-item marcas">
                     <div>
-                        <b><?php echo $producto->marca_producto . "|" . $producto->tipo_producto . "|" . $producto->modelo . "|" . $producto->color; ?></b>
+                        <b><?php echo $producto->marca_producto . " | " . $producto->tipo_producto . " | " . $producto->modelo . " | " . $producto->color . " | $" . $producto->precio; ?></b>
                     </div>
                     <div class="actions">
                         <a href="producto/<?php echo $producto->id_productos; ?>" type="button" class="btn btn-primary ml-auto">Ver Producto</a>
-                        <a href="formModificar-producto/<?php echo $producto->id_productos; ?>" type="button" class="btn btn-success ml-auto">Modificar</a> 
+                        <a href="formModificar-producto/<?php echo $producto->id_productos; ?>" type="button" class="btn btn-success ml-auto">Modificar</a>
                         <a href="eliminar-prod/<?php echo $producto->id_productos; ?>" type="button" class="btn btn-danger ml-auto">Borrar</a>
                     </div>
                 </li>
             <?php } ?>
         </ul>
-        <?php
+    <?php
         require_once "templates/footer.php";
     }
 
-    function mostrarProductoId($producto){
+    function mostrarProductoId($producto)
+    {
 
         require_once "templates/header.php";
-        
-        ?>
+
+    ?>
         <div class="product-details">
             <h2>Detalles del Producto</h2>
-            <p><strong>Marca:</strong> <?php echo($producto->marca_producto); ?></p>
-            <p><strong>Tipo:</strong> <?php echo($producto->tipo_producto); ?></p>
-            <p><strong>Modelo:</strong> <?php echo($producto->modelo); ?></p>
-            <p><strong>Color:</strong> <?php echo($producto->color); ?></p>
-            <p><strong>Descripción:</strong> <?php echo($producto->descripcion_producto); ?></p>
+            <p><strong>Marca:</strong> <?php echo ($producto->marca_producto); ?></p>
+            <p><strong>Tipo:</strong> <?php echo ($producto->tipo_producto); ?></p>
+            <p><strong>Modelo:</strong> <?php echo ($producto->modelo); ?></p>
+            <p><strong>Color:</strong> <?php echo ($producto->color); ?></p>
+            <p><strong>Precio:</strong> <?php echo ("$" .$producto->precio); ?></p>
+            <p><strong>Descripción:</strong> <?php echo ($producto->descripcion_producto); ?></p>
         </div>
-        <?php
+    <?php
         echo "<div><a href='/PARTE2/productos' class='btn btn-success ml-2'>Regresar</a></div>";
         require_once "templates/footer.php";
     }
 
-    function modificarFormProducto($idproducto){
+    function modificarFormProducto($idproducto)
+    {
         require_once "templates/header.php";
 
-?>
+    ?>
         <main>
-    <?php echo "<h2> Marca: $idproducto->marca_producto </h2>"; ?>
-    <form action="/PARTE2/modificar-producto" method="POST" class="my-4" id="formulario">
+            <?php echo "<h2> Marca: $idproducto->marca_producto </h2>"; ?>
+            <form action="/PARTE2/modificar-producto" method="POST" class="my-4" id="formulario">
 
-        <input type="hidden" name="idproducto" value="<?= $idproducto->id_productos ?>">
-        <div class="row">  
-            <div class="col-9">
-                <div class="form-group">
-                    <label>Tipo de Producto</label>
-                    <input required name="tipo-productoNuevo" type="text" class="form-control" id="tipo-productoNuevo" value="<?= $idproducto->tipo_producto ?>">
+                <input type="hidden" name="idproducto" value="<?= $idproducto->id_productos ?>">
+                <div class="row">
+                    <div class="col-9">
+                        <div class="form-group">
+                            <label>Tipo de Producto</label>
+                            <input required name="tipo-productoNuevo" type="text" class="form-control" id="tipo-productoNuevo" value="<?= $idproducto->tipo_producto ?>">
+                        </div>
+                    </div>
+
+                    <div class="col-9">
+                        <div class="form-group">
+                            <label>Modelo del Producto</label>
+                            <input required name="modeloNuevo" type="text" class="form-control" id="modeloNuevo" value="<?= $idproducto->modelo ?>">
+                        </div>
+                    </div>
+
+                    <div class="col-9">
+                        <div class="form-group">
+                            <label>Color del Producto</label>
+                            <input required name="colorNuevo" type="text" class="form-control" id="colorNuevo" value="<?= $idproducto->color ?>">
+                        </div>
+                    </div>
+
+                    <div class="col-9">
+                        <div class="form-group">
+                            <label>Descripción del Producto</label>
+                            <input required name="descripcionNueva" type="text" class="form-control" id="descripcionNueva" value="<?= $idproducto->descripcion_producto ?>">
+                        </div>
+                    </div>
+
+                    <div class="col-9">
+                        <div class="form-group">
+                            <label>Precio</label>
+                            <input required name="precioNuevo" type="text" class="form-control" id="precioNuevo" value="<?= $idproducto->precio ?>">
+                        </div>
+                    </div>
+
+ 
+
+                    <button type="submit" class="btn btn-success mt-2">Modificar</button>
                 </div>
-            </div>
-
-            <div class="col-9">
-                <div class="form-group">
-                    <label>Modelo del Producto</label>
-                    <input required name="modeloNuevo" type="text" class="form-control" id="modeloNuevo" value="<?= $idproducto->modelo ?>">
-                </div>
-            </div>
-
-            <div class="col-9">
-                <div class="form-group">
-                    <label>Color del Producto</label>
-                    <input required name="colorNuevo" type="text" class="form-control" id="colorNuevo" value="<?= $idproducto->color ?>">
-                </div>
-            </div>
-
-            <div class="col-9">
-                <div class="form-group">
-                    <label>Descripción del Producto</label>
-                    <input required name="descripcionNueva" type="text" class="form-control" id="descripcionNueva" value="<?= $idproducto->descripcion_producto ?>">
-                </div>
-            </div>
-
-            <button type="submit" class="btn btn-success mt-2">Modificar</button>
-        </div>
-    </form>
-</main>
+            </form>
+        </main>
 
 <?php
 
         require_once "templates/footer.php";
     }
 
-    function mostrarerror(){
+    function mostrarerror()
+    {
         echo "No se pudo insertar el producto correctamente.";
     }
 
-    function redireccionar(){
-        header('Location:'. BASE_URL . 'productos');
+    function redireccionar()
+    {
+        header('Location:' . BASE_URL . 'productos');
     }
-
- 
 }
 ?>
